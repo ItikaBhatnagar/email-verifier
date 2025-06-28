@@ -30,7 +30,7 @@ email-verifier/
 │ └── style.css → (Optional) Styling for the frontend
 ├── README.md → Documentation
 
-![Demo](image/demo.png)
+![Demo](email-verifier/image/demo.png)
 
 ### Steps to Run Locally:
 
