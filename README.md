@@ -30,6 +30,8 @@ email-verifier/
 │ └── style.css → (Optional) Styling for the frontend
 ├── README.md → Documentation
 
+![Demo](image/demo.png)
+
 ### Steps to Run Locally:
 
 1. **Clone the repository:**
@@ -40,5 +42,5 @@ go run main.go
 ** Open Breowser and Go to 
 http://localhost:8080
 
-![Alt text](images/demo.png)
+
 
