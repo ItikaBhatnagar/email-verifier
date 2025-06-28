@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Domain Checker</title>
+<style>
+body { background: #121212; color: #eee; font-family: sans-serif; text-align: center; padding: 50px; }
+.box { background: #1e1e1e; padding: 20px; border-radius: 8px; width: 500px; margin: auto; }
+input, button { padding: 8px; border: none; border-radius: 4px; }
+input { width: 65%; background: #333; color: #eee; }
+button { background: #03a9f4; color: white; cursor: pointer; }
+button:hover { background: #0288d1; }
+table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+th, td { border: 1px solid #333; padding: 6px; word-break: break-word; }
+th { background: #03a9f4; color: white; }
+td.dmarc { max-width: 250px; }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Domain Checker</h2>
+  <input id="domain" placeholder="e.g. gmail.com">
+  <button onclick="check()">Check</button>
+
+  <table id="result" hidden>
+    <tr><th>Domain</th><th>MX</th><th>SPF</th><th>SPF Record</th><th>DMARC</th><th>DMARC Record</th></tr>
+    <tr id="row"></tr>
+  </table>
+</div>
+
+<script>
+function check() {
+  const d = document.getElementById('domain').value.trim();
+  if (!d) return alert('Enter a domain');
+  fetch(`/check?domain=${d}`).then(r => r.json()).then(x => {
+    document.getElementById('result').hidden = false;
+    row.innerHTML = `<td>${x.domain}</td><td>${x.hasMX}</td><td>${x.hasSPF}</td>
+      <td>${x.spfRecord || 'N/A'}</td><td>${x.hasDMARC}</td><td class="dmarc">${x.dmarcRecord || 'N/A'}</td>`;
+  }).catch(() => alert('Error fetching data'));
+}
+</script>
+
+</body>
+</html>
